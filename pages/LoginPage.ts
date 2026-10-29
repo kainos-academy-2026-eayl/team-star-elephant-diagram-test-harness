@@ -1,0 +1,29 @@
+import { type Locator, type Page } from '@playwright/test';
+
+
+export class LoginPage {
+    readonly username: Locator;
+    readonly password: Locator;
+    readonly loginButton: Locator;
+    readonly errorMessage: Locator;
+    readonly message: Locator;
+
+    constructor(private readonly page: Page) {
+        this.username = page.getByTestId('email');
+        this.password = page.getByTestId('password');
+        this.loginButton = page.getByRole('button', { name: 'Log in' });
+        this.errorMessage = page.getByText('Invalid email or password');
+        this.message = page.getByRole('heading', { name: 'Top Picks' })
+    }
+
+    async goto() { await this.page.goto('/login'); }
+    async loginAs(name: string, password: string) {
+        await this.username.click();
+        await this.username.fill(name);
+        await this.password.click();
+        await this.password.fill(password);
+        await this.loginButton.click();
+
+    }
+
+}
