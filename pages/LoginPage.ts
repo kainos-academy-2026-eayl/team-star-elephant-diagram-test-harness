@@ -7,12 +7,14 @@ export class LoginPage {
     readonly loginButton: Locator;
     readonly errorMessage: Locator;
     readonly message: Locator;
+    readonly serviceMessage: Locator;
 
     constructor(private readonly page: Page) {
         this.username = page.getByTestId('email');
         this.password = page.getByTestId('password');
         this.loginButton = page.getByRole('button', { name: 'Log in' });
         this.errorMessage = page.getByText('Invalid email or password');
+        this.serviceMessage = page.getByText('The service is temporarily unavailable. Please try again.');
         this.message = page.getByRole('heading', { name: 'Top Picks' })
     }
 

@@ -6,13 +6,21 @@ import { LoginPage } from '../pages/LoginPage';
 test('registered user can sign in', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.loginAs('practice', 'SuperSecretPassword!'); //removed dupes
+    await loginPage.loginAs('rosetest@example.com', 'userTest1!'); //removed dupes
     await expect(loginPage.message).toHaveText('Top Picks');
 });
 
 test('registered user with a invalid password cannot sign in', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.loginAs('practice', 'WrongPassword!'); //removed dupes
+    await loginPage.loginAs('rosetest@example.com', 'WrongPassword!'); //removed dupes
+    await expect(loginPage.serviceMessage).toHaveText('The service is temporarily unavailable. Please try again.');
+});
+
+
+test('not registered user cannot sign in', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.loginAs('practice@example.com', 'WrongPassword!'); //removed dupes
     await expect(loginPage.errorMessage).toHaveText('Invalid email or password');
 });
