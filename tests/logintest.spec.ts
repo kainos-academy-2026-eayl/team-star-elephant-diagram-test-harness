@@ -14,7 +14,7 @@ test('registered user with a invalid password cannot sign in', async ({ page }) 
     const loginPage = new LoginPage(page);
     await loginPage.goto();
     await loginPage.loginAs('rosetest@example.com', 'WrongPassword!'); //removed dupes
-    await expect(loginPage.serviceMessage).toHaveText('The service is temporarily unavailable. Please try again.');
+    await expect(loginPage.errorMessage).toHaveText('Invalid email or password');
 });
 
 
