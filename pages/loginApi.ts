@@ -2,7 +2,7 @@ import { APIRequestContext, APIResponse } from '@playwright/test';
 
 export class LoginAPI {
     readonly request: APIRequestContext;
-    readonly endpoint: string = 'http://localhost:3001/api/users/login';
+    readonly endpoint: string = 'http://localhost:3001/login';
 
     constructor(request: APIRequestContext) {
         this.request = request;

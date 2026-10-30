@@ -6,14 +6,16 @@ test('testing API response for logging in with a registered account', async ({ l
     expect(response.status()).toBe(200);
 
     const body = await response.json();
-    expect(body.message).toBe('Login successful');
+    expect(body.status).toBe('Success');
+    expect(body.accessToken).toBeTruthy();
+    expect(body.expiresIn).toBe(900);
 });
 
 test('testing API response for logging in with a non-registered account', async ({ loginApi }) => {
     const response = await loginApi.login('nonregistered@email.com', 'SuperSecretPassword!');
 
-    expect(response.status()).toBe(400);
+    expect(response.status()).toBe(401);
 
     const body = await response.json();
-    expect(body.message).toBe('Incorrect email address or password');
+    expect(body.error).toBe('Invalid email or password');
 });
