@@ -6,7 +6,7 @@ import { LoginPage } from '../pages/LoginPage';
 test('registered user can sign in', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.loginAs('rosetest@example.com', 'userTest1!'); //removed dupes
+    await loginPage.loginAs('rosetest@example.com', 'userTest1!'); 
     await expect(loginPage.message).toHaveText('Top Picks');
 });
 
