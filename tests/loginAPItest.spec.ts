@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/testFixtures';
 
-test('testing API response for logging in with a registered account', async ({ loginApi }) => {
-    const response = await loginApi.login('rosetest@example.com', 'userTest1!');
+test('testing API response for logging in with a registered account', async ({ loginApi, customer }) => {
+    const response = await loginApi.login(customer.email, customer.password);
 
     expect(response.status()).toBe(200);
 

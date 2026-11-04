@@ -4,7 +4,9 @@
     "private": true,
     "scripts": {
         "test": "bddgen && playwright test --headed",
-        "test:bdd": "bddgen && playwright test --project=bdd --headed"
+        "test:bdd": "bddgen && playwright test --project=bdd --headed",
+        "test:e2e": "playwright test --project=tests",
+        "report": "playwright show-report"
     },
     "devDependencies": {
         "@playwright/test": "^1.63.0",
