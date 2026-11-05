@@ -1,8 +1,9 @@
 import { APIRequestContext, APIResponse } from '@playwright/test';
+import { env } from '../fixtures/env';
 
 export class LoginAPI {
     readonly request: APIRequestContext;
-    readonly endpoint: string = 'http://localhost:3001/login';
+    readonly endpoint: string = `${env.apiUrl}/login`;
 
     constructor(request: APIRequestContext) {
         this.request = request;
