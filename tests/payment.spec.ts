@@ -1,4 +1,3 @@
-import { KNOWN_BUGS } from '../fixtures/knownBugs';
 import { expect, test } from '../fixtures/testFixtures';
 import { PaymentPage, VALID_ADDRESS, VALID_CARD } from '../pages/PaymentPage';
 
@@ -12,7 +11,7 @@ test('signed-out shopper is asked to log in to pay', async ({ page }) => {
 });
 
 test('signed-in customer with items can open the payment page', async ({ loggedInPage: page, api, customerToken, inStockProduct }) => {
-    test.fail(true, KNOWN_BUGS.paymentPageNeedsAuthHeader);
+    test.fail(true, 'Known bug: /payment_gateway only accepts an Authorization header, which browsers never send, so signed-in customers are told to log in');
     await api.addToBasket(customerToken, inStockProduct.productId, 1);
 
     const paymentPage = new PaymentPage(page);
@@ -50,7 +49,7 @@ for (const { field, value, message } of [
 }
 
 test('valid payment details show the payment is processing', async ({ page }) => {
-    test.fail(true, KNOWN_BUGS.paymentSuccessNotShown);
+    test.fail(true, 'Known bug: the controller renders `paymentResult` but payment_gateway.njk reads `payment`, so the success message never appears');
     const paymentPage = new PaymentPage(page);
     await paymentPage.goto();
     await paymentPage.fillCard(VALID_CARD);

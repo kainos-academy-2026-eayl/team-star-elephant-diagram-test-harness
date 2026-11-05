@@ -75,7 +75,7 @@ written to the backend console.
 
 ## Known bugs
 
-Tests that hit a known app bug are marked `test.fail(...)` with a reason from
-`fixtures/knownBugs.ts`. They pass while the bug exists. Once the bug is fixed,
+Tests that hit a known app bug are marked `test.fail(...)` with a reason
+describing the bug. They pass while the bug exists. Once the bug is fixed,
 the test fails with "Expected to fail, but passed"; remove its `test.fail` line
 then.

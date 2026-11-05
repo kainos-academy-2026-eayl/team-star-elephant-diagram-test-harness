@@ -1,5 +1,4 @@
 import type { AdminRole } from '../../fixtures/env';
-import { KNOWN_BUGS } from '../../fixtures/knownBugs';
 import { expect, test } from '../../fixtures/testFixtures';
 import { AdminDashboardPage } from '../../pages/admin/AdminDashboardPage';
 import { AdminUserDetailsPage, AdminUsersPage } from '../../pages/admin/AdminUsersPages';
@@ -40,7 +39,7 @@ test('roles without user access are refused the user list', async ({ page, login
 });
 
 test('roles without basket access are refused the basket list', async ({ page, loginAsAdmin }) => {
-    test.fail(true, KNOWN_BUGS.adminBasketsSendCookies);
+    test.fail(true, 'Known bug: /admin/baskets pages send cookies instead of an Authorization header, so signed-in admins get 401');
     await loginAsAdmin('FinanceManager');
     const response = await page.goto('/admin/baskets');
 
